@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katlego's App - Mobile EA</title>
+<style>
+body{background:#020610;color:#00aaff;font-family:Arial;text-align:center;margin:0}
+header{padding:15px;background:#000;border-bottom:2px solid #00aaff}
+.logo span{background:#00aaff;color:#000;padding:5px 12px;border-radius:8px;font-weight:bold}
+.phone{max-width:360px;margin:15px auto;border:2px solid #00aaff;border-radius:25px;padding:15px;box-shadow:0 0 20px #00aaff;background:#050a14}
+.robot-hero{border:2px solid #00aaff;border-radius:20px;padding:20px;margin:10px 0}
+.circle{width:90px;height:90px;border:3px solid #00aaff;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:bold;box-shadow:0 0 20px #00aaff;background:#001122}
+.controls{display:flex;justify-content:space-around;border:2px solid #00aaff;border-radius:15px;padding:12px;margin:12px 0}
+.controls button{background:transparent;color:#fff;border:none;font-size:12px;cursor:pointer}
+.powered{border:1px solid #00aaff;border-radius:20px;padding:10px;background:#001122;margin:12px 0}
+.powered b{color:#00aaff}
+.label{text-align:left;color:#fff;margin:10px 0;font-size:12px}
+.robot-card{display:flex;gap:12px;align-items:center;border:2px solid #00aaff;border-radius:15px;padding:12px;background:#001122;text-align:left}
+.icon{width:50px;height:50px;border-radius:50%;border:2px solid #00aaff;display:flex;align-items:center;justify-content:center;color:#00aaff;font-weight:bold}
+.robot-card small{color:#00aaff}
+.bottom-nav{display:flex;justify-content:space-around;border:1px solid #00aaff;border-radius:15px;padding:10px;margin-top:12px}
+.live{margin-top:12px;background:#000;padding:8px;border-radius:10px;font-size:11px;color:#0f0}
+footer{margin:20px;color:#666;font-size:11px}
+</style>
+</head>
+<body>
+<header><div class="logo"><span>K</span> katlego-app</div></header>
+<div class="phone">
+<div class="robot-hero">
+<div class="circle">EA</div>
+<h1>KATLEGO</h1>
+<p style="color:#fff;font-size:12px">Fully automated EA</p>
+</div>
+<div class="controls">
+<button id="pairsBtn">📈<br>PAIRS</button>
+<button id="startBtn">▶️<br>START</button>
+<button id="infoBtn">ℹ️<br>INFO</button>
+</div>
+<div class="powered">Powered by <b>Katlego</b></div>
+<div class="label">Robot List</div>
+<div class="robot-card">
+<div class="icon">EA</div>
+<div><b>KATLEGO SCALPER</b><br><small>Adaptive AI Trading</small><br><small id="status">Status: Ready - XAUUSD M5</small></div>
+<button style="background:transparent;border:1px solid #00aaff;color:#00aaff;border-radius:50%;width:30px;height:30px">X</button>
+</div>
+<div class="bottom-nav">
+<button style="background:transparent;color:#00aaff;border:none">🏠<br>Home</button>
+<button style="background:transparent;color:#00aaff;border:none">🗄️<br>Connect</button>
+</div>
+<div class="live" id="livePrice">LIVE: XAUUSD 4078.20 +1.18% | BTCUSD +2.06%</div>
+</div>
+<footer>KATLEGO'S APP - MOBILE EA<br>Built on GitHub | Powered by Katlego</footer>
+
+<script>
+let running=false;
+let price=4078.20;
+document.getElementById('startBtn').onclick=()=>{
+ running=!running;
+ const s=document.getElementById('status');
+ const b=document.getElementById('startBtn');
+ if(running){
+  b.innerHTML='⏸️<br>STOP';
+  s.innerText='Status: RUNNING - Scanning XAUUSD M5 (EMA 9/21 + RSI)';
+  s.style.color='#00ff88';
+  alert('KATLEGO BOT STARTED! 🔥\n\nEMA 9/21 + RSI\nTP1 15$ TP2 30$ TP3 50$');
+ }else{
+  b.innerHTML='▶️<br>START';
+  s.innerText='Status: Stopped';
+  s.style.color='#ff4444';
+ }
+};
+document.getElementById('pairsBtn').onclick=()=>{
+ const p=prompt('Choose Pair','XAUUSD');
+ if(p) document.getElementById('status').innerText='Selected: '+p+' M5 - Ready';
+};
+document.getElementById('infoBtn').onclick=()=>{
+ alert('KATLEGO SCALPER v1.0\n\nPowered by Katlego\n\nStrategy: EMA 9/21 + RSI Filter\nTimeframe: M5\nBest Pair: XAUUSD Gold\n\nTP1: 1500 points\nTP2: 3000\nTP3: 5000\nSL: 1000\n\nBuilt on GitHub - 100% FREE');
+};
+setInterval(()=>{
+ price+=(Math.random()-0.5)*0.3;
+ document.getElementById('livePrice').innerText=`LIVE: XAUUSD ${price.toFixed(2)} +1.18% | BTCUSD +2.06% | EURUSD +0.42%`;
+},1500);
+</script>
+</body>
+</html>
